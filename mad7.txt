@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Display current layout name -->
+    <TextView
+        android:id="@+id/txtCurrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Currently showing: "
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
+
+    <!-- Buttons to switch layouts -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/btnLinear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Linear"/>
+
+        <Button
+            android:id="@+id/btnRelative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Relative"
+            android:layout_marginLeft="8dp"/>
+
+        <Button
+            android:id="@+id/btnTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Table"
+            android:layout_marginLeft="8dp"/>
+    </LinearLayout>
+
+    <!-- Layouts container -->
+    <FrameLayout
+        android:id="@+id/layoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <!-- LinearLayout Example (modified to show buttons) -->
+       <LinearLayout
+            android:id="@+id/linearLayoutExample"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E0F7FA"
+            android:visibility="gone">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button 1"
+                android:layout_margin="8dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button 2"
+                android:layout_margin="8dp"/>
+
+        </LinearLayout>
+
+        <!-- RelativeLayout Example -->
+        <RelativeLayout
+            android:id="@+id/relativeLayoutExample"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFCDD2"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="This is RelativeLayout"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+
+        <!-- TableLayout Example -->
+        <TableLayout
+            android:id="@+id/tableLayoutExample"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1"
+            android:background="#C8E6C9"
+            android:visibility="gone">
+
+            <TableRow>
+                <TextView
+                    android:text="Row 1, Col 1"
+                    android:padding="10dp"/>
+                <TextView
+                    android:text="Row 1, Col 2"
+                    android:padding="10dp"/>
+            </TableRow>
+
+            <TableRow>
+                <TextView
+                    android:text="Row 2, Col 1"
+                    android:padding="10dp"/>
+                <TextView
+                    android:text="Row 2, Col 2"
+                    android:padding="10dp"/>
+            </TableRow>
+        </TableLayout>
+
+    </FrameLayout>
+</LinearLayout>
+
+
+
+
+
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+    TextView txtCurrent;
+    LinearLayout linearLayoutExample;
+    RelativeLayout relativeLayoutExample;
+    TableLayout tableLayoutExample;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        txtCurrent = (TextView) findViewById(R.id.txtCurrent);
+        linearLayoutExample = (LinearLayout) findViewById(R.id.linearLayoutExample);
+        relativeLayoutExample = (RelativeLayout) findViewById(R.id.relativeLayoutExample);
+        tableLayoutExample = (TableLayout) findViewById(R.id.tableLayoutExample);
+
+        Button btnLinear = (Button) findViewById(R.id.btnLinear);
+        Button btnRelative = (Button) findViewById(R.id.btnRelative);
+        Button btnTable = (Button) findViewById(R.id.btnTable);
+
+        // Button actions
+        btnLinear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLayout("LinearLayout");
+                linearLayoutExample.setVisibility(View.VISIBLE);
+                relativeLayoutExample.setVisibility(View.GONE);
+                tableLayoutExample.setVisibility(View.GONE);
+            }
+        });
+
+        btnRelative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLayout("RelativeLayout");
+                linearLayoutExample.setVisibility(View.GONE);
+                relativeLayoutExample.setVisibility(View.VISIBLE);
+                tableLayoutExample.setVisibility(View.GONE);
+            }
+        });
+
+        btnTable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLayout("TableLayout");
+                linearLayoutExample.setVisibility(View.GONE);
+                relativeLayoutExample.setVisibility(View.GONE);
+                tableLayoutExample.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    private void showLayout(String name) {
+        txtCurrent.setText("Currently showing: " + name);
+    }
+}
