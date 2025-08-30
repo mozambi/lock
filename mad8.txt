@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to Menu Demo"
+        android:textSize="20sp"
+        android:padding="10dp"/>
+</LinearLayout>
+
+
+
+
+import android.app.*;
+import android.content.*;
+import android.os.*;
+import android.view.*;
+import android.widget.*;
+
+public class MainActivity extends Activity {
+
+    TextView tv;
+
+    protected void onCreate(Bundle b) {
+        super.onCreate(b);
+        setContentView(R.layout.activity_main);
+        tv = (TextView) findViewById(R.id.textView1);
+    }
+
+    public boolean onCreateOptionsMenu(Menu m) {
+        m.add(0,1,0,"About").setIcon(android.R.drawable.ic_menu_info_details);
+        m.add(0,2,1,"Settings").setIcon(android.R.drawable.ic_menu_manage);
+        m.add(0,3,2,"Exit").setIcon(android.R.drawable.ic_lock_power_off);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem i) {
+        switch(i.getItemId()) {
+            case 1: dlg("About","This is a simple menu demo",false); return true;
+            case 2: tv.setText("Settings option selected"); return true;
+            case 3: dlg("Exit","Do you want to exit?",true); return true;
+        }
+        return super.onOptionsItemSelected(i);
+    }
+
+    void dlg(String t,String m,boolean exit) {
+        AlertDialog.Builder b=new AlertDialog.Builder(this);
+        b.setTitle(t).setMessage(m);
+        if(exit) {
+            b.setPositiveButton("Yes",new DialogInterface.OnClickListener(){
+                public void onClick(DialogInterface d,int w){finish();}
+            });
+            b.setNegativeButton("No",null);
+        } else b.setPositiveButton("OK",null);
+        b.show();
+    }
+}

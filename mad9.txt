@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etNum1"
+        android:hint="Number 1"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/etNum2"
+        android:hint="Number 2"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnAdd"
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnSub"
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnMul"
+            android:text="×"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnDiv"
+            android:text="÷"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etResult"
+        android:hint="Result"
+        android:focusable="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+
+
+
+
+
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+
+public class MainActivity extends Activity implements View.OnClickListener {
+
+    EditText n1, n2, res;
+
+    @Override
+    protected void onCreate(Bundle b) {
+        super.onCreate(b);
+        setContentView(R.layout.activity_main);
+
+        n1  = (EditText) findViewById(R.id.etNum1);
+        n2  = (EditText) findViewById(R.id.etNum2);
+        res = (EditText) findViewById(R.id.etResult);
+
+        int[] ids = { R.id.btnAdd, R.id.btnSub, R.id.btnMul, R.id.btnDiv };
+        for (int id : ids) findViewById(id).setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) { calc(v); }
+
+    void calc(View v) {
+        double a = get(n1), b = get(n2), r = 0;
+        switch (v.getId()) {
+            case R.id.btnAdd: r = a + b; break;
+            case R.id.btnSub: r = a - b; break;
+            case R.id.btnMul: r = a * b; break;
+            case R.id.btnDiv: r = (b != 0) ? a / b : 0; break;
+        }
+        res.setText(String.valueOf(r));
+    }
+
+    double get(EditText e) {
+        String s = e.getText().toString();
+        return s.length() == 0 ? 0 : Double.parseDouble(s);
+    }
+}

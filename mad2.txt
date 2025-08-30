@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/u"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username" />
+
+    <EditText
+        android:id="@+id/p"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/a"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address" />
+
+    <RadioGroup
+        android:id="@+id/g"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/m"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/f"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Age"
+        android:inputType="number" />
+
+    <DatePicker
+        android:id="@+id/dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/s"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Submit" />
+
+    <TextView
+        android:id="@+id/out"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:textSize="16sp" />
+</LinearLayout>
+
+
+
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.*;
+
+public class MainActivity extends Activity {
+  @Override protected void onCreate(Bundle s) {
+    super.onCreate(s);
+    setContentView(R.layout.activity_main);
+
+    final EditText u=(EditText)findViewById(R.id.u),
+                   p=(EditText)findViewById(R.id.p),
+                   a=(EditText)findViewById(R.id.a),
+                   age=(EditText)findViewById(R.id.age);
+    final RadioGroup g=(RadioGroup)findViewById(R.id.g);
+    final DatePicker dp=(DatePicker)findViewById(R.id.dp);
+    final Spinner sp=(Spinner)findViewById(R.id.s);
+    final TextView out=(TextView)findViewById(R.id.out);
+
+    sp.setAdapter(new ArrayAdapter<String>(this,
+      android.R.layout.simple_spinner_dropdown_item,
+      new String[]{"Select State","Tamil Nadu","Kerala","Karnataka","Andhra Pradesh"}));
+
+    ((Button)findViewById(R.id.b)).setOnClickListener(new OnClickListener(){
+      public void onClick(View v){
+        int id=g.getCheckedRadioButtonId();
+        String gender=id!=-1?((RadioButton)findViewById(id)).getText().toString():"Not selected";
+        String dob=dp.getDayOfMonth()+"/"+(dp.getMonth()+1)+"/"+dp.getYear();
+        out.setText(
+          "Username: "+u.getText()+"\nPassword: "+p.getText()+
+          "\nAddress: "+a.getText()+"\nGender: "+gender+
+          "\nAge: "+age.getText()+"\nDOB: "+dob+
+          "\nState: "+sp.getSelectedItem()
+        );
+      }
+    });
+  }
+}

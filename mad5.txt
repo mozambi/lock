@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start" />
+
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Stop" />
+
+</LinearLayout>
+
+
+
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+
+public class MainActivity extends Activity {
+
+    @Override
+    protected void onCreate(Bundle s) {
+        super.onCreate(s);
+        setContentView(R.layout.activity_main);
+
+        Button st = (Button) findViewById(R.id.start);
+        Button sp = (Button) findViewById(R.id.stop);
+
+        st.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Started",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        sp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this,"Stopped",Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
