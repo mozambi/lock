@@ -1,0 +1,6 @@
+start wampmanager
+Note the Host IPv4   -ipconfig in cmd
+Place the files inside www/newfolder
+Check if the files are accessible in Host   -localhost:8080/newfolder/file.txt
+Check if Files are accessible in Client     -http://HostIPaddress/newfolder/file.txt
+download file
