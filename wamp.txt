@@ -1,6 +1,28 @@
 start wampmanager
 Note the Host IPv4   -ipconfig in cmd
+If dynamic - Make Host as Static IP
 Place the files inside www/newfolder
 Check if the files are accessible in Host   -localhost:8080/newfolder/file.txt
 Check if Files are accessible in Client     -http://HostIPaddress:8080/newfolder/file.txt
 download file
+
+Windows File Sharing:
+Create Folder In C:\test
+Save the files in the folder
+Right-click the folder → Properties.
+Go to Sharing tab.
+Click Advanced Sharing…
+Tick Share this folder.
+Give it a simple name (e.g., shared).
+Click Permissions →
+Add Everyone
+Select:
+Read/Write (others can copy back, edit, delete).
+Apply → OK.
+
+Open Control Panel → Network and Sharing Center.
+On the left, click Change advanced sharing settings.
+Under your network profile (Private or Domain):
+Turn on Network discovery
+Turn on File and printer sharing
+Save changes.
