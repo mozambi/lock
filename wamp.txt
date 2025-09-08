@@ -26,3 +26,30 @@ Under your network profile (Private or Domain):
 Turn on Network discovery
 Turn on File and printer sharing
 Save changes.
+
+
+WampServer Auto-Start for All Users
+Step 1: Install WampServer
+Default location: C:\wamp64
+Verify Apache & MySQL run manually first.
+Step 2: Install Apache & MySQL as Windows Services
+Open WampManager (tray icon).
+Click: Apache → Service → Install Service
+Click: MySQL → Service → Install Service
+Step 3: Set Services to Start Automatically
+Press Win + R, type: services.msc
+Find: wampapache64 and wampmysqld64
+Right-click → Properties → Startup type → Automatic → Apply → OK
+Step 4: Configure Firewall
+Allow Apache (HTTP) through Windows Firewall.
+WampManager usually prompts for this automatically.
+Step 5: Store Files in www Folder
+Path: C:\wamp64\www
+Drop any files you want accessible from client PCs.
+Step 6: Access Files from Client PC
+Open browser → type: http://<Host-IP>/
+Files in www are now accessible without starting WampManager manually.
+Optional Step 7: Run WampManager Silently
+Open C:\wamp64\wampmanager.ini
+Set: StartHidden=1
+WampManager tray icon will not appear, but Apache/MySQL services still run.
