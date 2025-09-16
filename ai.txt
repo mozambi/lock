@@ -1,0 +1,270 @@
+1:---------------------------------------------------------------------------------------------------
+
+mail = input("Enter Your E-mail ID"
+             "\nFormat: firstname.lastname@gmail.com\n")
+dot_index = mail.index(".")
+post_dot_index = mail.index("@")
+print("First Name:", mail[:dot_index])
+print("Last Name:", mail[dot_index + 1: post_dot_index])
+print("Domain:", mail[post_dot_index:])
+
+
+2:---------------------------------------------------------------------------------------------------
+
+num = 0
+while (True):
+    num = int(input("Enter a Number Between 1 and 3999: "))
+    if num < 1 or num > 3999:
+        print("Invalid Number:\n")
+        continue
+    else:
+        break
+
+symbols = [(1000, "M"), (900, "CM"), (400, "CD"),
+           (100, "C"), (90, "XC"),(50, "L"),
+           (40, "XL"), (10, "X"), (9, "IX"),
+           (5, "V"), (4, "IV"), (1, "I")]
+roman = ""
+for value , numeral in symbols:
+    while num >= value:
+        roman += numeral
+        num -= value
+print(roman)
+
+3:---------------------------------------------------------------------------------------------------
+
+
+height = float(input("Enter Height in cm: "))
+weight = float(input("Enter Weight in kg: "))
+bmi = round(weight / (height/100)**2, 3)
+print("\nYour BMI is: ", bmi)
+if bmi < 18.5:
+    print("You are Underweight!")
+elif bmi < 24.9:
+    print("You are Healthy!")
+elif bmi < 29.9:
+    print("You are Overweight!")
+else:
+    print("You are Obese!")
+
+
+4::---------------------------------------------------------------------------------------------------
+dividend = int(input("Enter The Dividend: "))
+divisor = int(input("Enter The Divisor: "))
+if divisor == 0:
+    print("Cannot Divide By Zero!")
+else:
+    quotient = remainder = 0
+    while dividend >= divisor:
+        dividend -= divisor
+        quotient += 1
+        remainder = dividend
+    print(f"Quotient: {quotient}\n"
+          f"Remainder: {remainder}")
+
+5::---------------------------------------------------------------------------------------------------
+
+operation = ""
+num1 = num2 = 0
+while operation != "quit":
+    operation = input("Enter an Operation: [ + - * / ] or QUIT: ")
+    if operation == "quit":
+        break
+    if operation not in "+-/*":
+        print("Invalid Operation!\n")
+        continue
+    else:
+        num1 = float(input("Enter First Number: "))
+        num2 = float(input("Enter Second Number: "))
+        if operation == "/" and num2 == 0:
+            print("Cannot Divide By zero!")
+            continue
+        else:
+            if operation == "+":
+                print(f"{num1} {operation} {num2} = {round(num1 + num2, 3)}\n")
+            elif operation == "-":
+                print(f"{num1} {operation} {num2} = {round(num1 - num2, 3)}\n")
+            elif operation == "*":
+                print(f"{num1} {operation} {num2} = {round(num1 * num2, 3)}\n")
+            else:
+                print(f"{num1} {operation} {num2} = {round(num1 / num2, 3)}\n")
+
+
+6:---------------------------------------------------------------------------------------------------
+
+
+from collections import defaultdict
+class graph:
+    def __init__(self):
+        self.graph=defaultdict(list)
+    def addedge(self,u,v):
+        self.graph[u].append(v)
+    def BFS(self,s):
+        visited=[False]*(max(self.graph)+1)
+        queue=[]
+        queue.append(s)
+        visited[s]=True
+        while queue:
+            s=queue.pop()
+            print(s,end=" ")
+            for i in self.graph[s]:
+                if visited[i]==False:
+                    queue.append(i)
+                    visited[i]=True
+g=graph()
+g.addedge(0,1)
+g.addedge(0,2)
+g.addedge(1,2)
+g.addedge(2,0)
+g.addedge(2,3)
+g.addedge(3,3)
+print("following is Breadth first traversal","(starting from vertex 2)")
+g.BFS(2)
+
+7:---------------------------------------------------------------------------------------------------
+
+def dfs(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(start)
+
+    print(start)
+
+    for next in graph[start] - visited:
+        dfs(graph, next, visited)
+    return visited
+
+
+graph = {'0': set(['1', '2']),
+         '1': set(['0', '3', '4']),
+         '2': set(['0']),
+         '3': set(['1']),
+         '4': set(['2', '3'])}
+
+print("Following is the DFS from starting vertex 0: \n")
+dfs(graph, '0')
+
+8:---------------------------------------------------------------------------------------------------
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv('data.csv')
+df['Date'] = pd.to_datetime(df['Date'])
+df.set_index('Date', inplace=True)
+print(df.head())  
+print(df.describe())  
+plt.figure(figsize=(8,4))
+plt.plot(df.index, df['Value'], marker='o')
+plt.title('Time Series Data')
+plt.xlabel('Date')
+plt.ylabel('Value')
+plt.grid(True)
+plt.show()
+df['Rolling_Mean'] = df['Value'].rolling(window=3).mean()
+print(df)
+
+
+
+CSV:
+Date,Value
+2024-01-01,100
+2024-01-02,120
+2024-01-03,115
+2024-01-04,130
+2024-01-05,125
+
+
+9:---------------------------------------------------------------------------------------------------
+
+
+oracle = [
+    {"question": "life", "answer": "yes, we have insure lives"},
+    {"question": "car", "answer": "yes, we have auto insurance"},
+    {"question": "auto", "answer": "yes, we have auto insurance"},
+    {"question": "vehicle", "answer": "yes, we have auto insurance"},
+    {"question": "accident", "answer": "oh! we are sorry! is anyone injured?"},
+    {"question": "how much", "answer": "hmmm... how much is what?"}
+]
+
+while True:
+    question = input("you: ")
+    got_Answer = False
+
+    for el in oracle:
+        match = True
+        for word in el["question"].split():
+            if word not in question.lower():
+                match = False
+                break
+        if match:
+            print("Bot:", el["answer"])
+            got_Answer = True
+            break
+
+    if not got_Answer:
+        print("Bot:", "Sorry, I didn't get it")
+
+
+10:---------------------------------------------------------------------------------------------------
+
+
+class Board:
+    def __init__(self):
+        self.board = [[' ', '1', '2', '3'],
+                      ['a', '-', '-', '-'],
+                      ['b', '-', '-', '-'],
+                      ['c', '-', '-', '-']]
+
+    def place_marker(self, row, col, marker):
+        row = ord(row) - ord('a') + 1
+        col = int(col)
+        if self.board[row][col] != '-':
+            raise ValueError('Non empty board position')
+        self.board[row][col] = marker
+
+    def check_winner(self):
+        if ((self.board[1][1] == self.board[1][2] == self.board[1][3] != '-') or
+            (self.board[2][1] == self.board[2][2] == self.board[2][3] != '-') or
+            (self.board[3][1] == self.board[3][2] == self.board[3][3] != '-') or
+            (self.board[1][1] == self.board[2][1] == self.board[3][1] != '-') or
+            (self.board[1][2] == self.board[2][2] == self.board[3][2] != '-') or
+            (self.board[1][3] == self.board[2][3] == self.board[3][3] != '-') or
+            (self.board[1][1] == self.board[2][2] == self.board[3][3] != '-') or
+            (self.board[1][3] == self.board[2][2] == self.board[3][1] != '-')):
+            return True
+        return False
+
+    def __str__(self):
+        return '\n'.join(str(row) for row in self.board)
+
+class TicTacToe:
+    def __init__(self):
+        self.turn = 0
+        self.board = Board()
+
+    def which_player(self):
+        return 'x' if self.turn % 2 == 0 else 'o'
+
+    def execute_turn(self, row, col):
+        marker = self.which_player()
+        self.board.place_marker(row, col, marker)
+        self.turn += 1
+        return self.board.check_winner()
+
+def run_game():
+    ttt = TicTacToe()
+    print(ttt.board)
+    while True:   # should check to see if the board is full
+        row, col = input('Where would you like to place your marker? Enter as coordinates (ex. a1.)')
+        try:
+            if ttt.execute_turn(row, col) == True:
+                break
+        except ValueError as e:
+            print(e)
+            print("Try again!!")
+        print(ttt.board)
+    print("!!!!!!!!!!!!!!!!!!!!!!!WINNER!!!!!!!!!!!!!!!!!!!!!!!")
+
+run_game()
+
