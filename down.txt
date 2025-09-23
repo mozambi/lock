@@ -1,0 +1,23 @@
+curl -o mad1.txt https://mozambi.github.io/lock/mad1.txt
+curl -o mad2.txt https://mozambi.github.io/lock/mad2.txt
+curl -o mad3.txt https://mozambi.github.io/lock/mad3.txt
+curl -o mad4.txt https://mozambi.github.io/lock/mad4.txt
+curl -o mad5.txt https://mozambi.github.io/lock/mad5.txt
+curl -o mad6.zip https://mozambi.github.io/lock/mad6.zip
+curl -o mad7.txt https://mozambi.github.io/lock/mad7.txt
+curl -o mad8.txt https://mozambi.github.io/lock/mad8.txt
+curl -o mad9.txt https://mozambi.github.io/lock/mad9.txt
+curl -o mad10.txt https://mozambi.github.io/lock/mad10.txt
+
+
+curl -o ml1.py https://mozambi.github.io/lock/ml1.py
+curl -o ml2.py https://mozambi.github.io/lock/ml2.py
+curl -o ml3.py https://mozambi.github.io/lock/ml3.py
+curl -o ml4.py https://mozambi.github.io/lock/ml4.py
+curl -o ml5.py https://mozambi.github.io/lock/ml5.py
+curl -o ml6.py https://mozambi.github.io/lock/ml6.py
+curl -o ml7.py https://mozambi.github.io/lock/ml7.py
+curl -o ml8.py https://mozambi.github.io/lock/ml8.py
+curl -o ml9.py https://mozambi.github.io/lock/ml9.py
+curl -o ml10.py https://mozambi.github.io/lock/ml10.py
+
